@@ -6,20 +6,20 @@ using namespace std;
 int main()
 {
     vector<int> nums = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
-    if (nums.size() == 0)
-        return 0;
+    vector<int> original;
+    vector<int> :: iterator it;
 
-    int slow = 0;
-    for (int fast = 1; fast < nums.size(); fast++)
-    {
-        if (nums[fast] != nums[slow])
-        {
-            slow++;
-            nums[slow] = nums[fast];
+    for(it= nums.begin(); it != nums.end() ; it++){
+        int el= *it;
+        if(find(original.begin(), original.end(), el) != original.end()){
+            nums.erase(it);
+            it--;
+        }else{
+            original.push_back(*it);
         }
     }
 
-    return 0;
+    return nums.size();
 }
 //* TWO-POINTER para filtrar array
 //* Problemas envolvendo arrays ordenados ou que podem ser ordenados.
